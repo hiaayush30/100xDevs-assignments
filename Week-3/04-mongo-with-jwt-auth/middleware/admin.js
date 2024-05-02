@@ -9,6 +9,7 @@ async function adminMiddleware(req, res, next) {
         const token = req.headers.authorization.split(" ")[1];
         try {
             if (jwt.verify(token, jwtPassword)) {
+                console.log(jwt.verify(token,jwtPassword));
                 next();
                 return;
             }

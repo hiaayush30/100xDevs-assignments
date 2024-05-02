@@ -28,7 +28,8 @@ router.post('/signup', async (req, res) => {
 
 router.post("/signin",async(req,res)=>{
     const username=req.headers.username;
-    const user=await User.findOne({username});
+    const password=req.headers.username;
+    const user=await User.findOne({username,password});
     if(!user){
         res.json({
             msg:"User does not exist!"
@@ -37,7 +38,7 @@ router.post("/signin",async(req,res)=>{
     }
     const token=jwt.sign({username},jwtPassword);
     res.json({
-        msg:"User signed in successfully!",
+        msg:"User sign in successfully!",
         token:"Bearer "+token
     })
 })
